@@ -71,8 +71,8 @@
         align-items: center;
       }
       .logo {
-        width: 49px;
-        height: 40px;
+        width: 55px;
+        height: 4px;
         border-radius: 10px;
         background: linear-gradient(135deg, var(--accent), #4dd0e1);
         display: flex;
@@ -679,8 +679,21 @@
       const menuToggle = document.getElementById("menuToggle");
       const nav = document.querySelector("nav");
 
-      menuToggle.addEventListener("click", () => {
+      // Toggle menu
+      menuToggle.addEventListener("click", (e) => {
+        e.stopPropagation(); // penting
         nav.classList.toggle("show");
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          nav.classList.contains("show") &&
+          !nav.contains(e.target) &&
+          !menuToggle.contains(e.target)
+        ) {
+          nav.classList.remove("show");
+        }
       });
     </script>
 
